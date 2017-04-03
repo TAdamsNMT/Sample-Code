@@ -4,5 +4,10 @@ with integers as the held data type.  This is used in bincalc.c, which performs
 various operations on binary integers specified by the user during runtime. 
 In this case, the binary integers are stored in doubly linked lists in order to
 allow for arbitrarily large operands.  The Makefile can be used in a Linux environment
-to compile this.
+to compile this. The C code is in Linux Kernel Style, and is documented with Doxygen
+compliant comments
 
+The Minesweeper, Internal, MFrame, and MPanel Java files are slightly older, and these
+contain an implementation of the Minesweeper game following the Model-View-Controller 
+model of GUI management, with Internal, MFrame, and MPanel objects being the Model, View,
+and Controller, respectively.
