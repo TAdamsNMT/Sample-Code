@@ -1,0 +1,59 @@
+Thomas Adams
+2016-11-19
+
+Purpose: To understand, implement, and use doubly linked lists to implement a 
+binary calculator with flexible operator size.
+
+Doubly linked lists are similar to singly linked lists in that they each provide
+a data structure that is ordered, not contiguous in memory, and not inherently 
+bounded in size.  However, whereas singly linked lists only remember the next
+element and thus one can only walk down them in one direction, doubly linked
+lists have both a successor and a predecessor and thus, from one can get from
+any element in the list to any other element in the list.  This makes singly
+linked lists useful in situations where linear processing occurs (work with
+one element, iterate, work with the next, iterate, work with the next, iterate,
+etc) and doubly linked lists useful in situations where one must walk up and
+down a list (for example, in a case where an unsorted list has to be sorted).
+The only real trade-off for the added functionality is the memory cost of having
+a predecessor pointer, which is a cost of 8 bytes of memory per node. 
+
+Conclusions:
+
+What I learned from this lab:
+
+As this lab was one of the first labs where we were given large amounts of
+autonomy to make implementation decisions, I had to put a lot of thought into 
+not only how to implement the functions a doubly linked list, but also what
+functions are necessary for a good, robust doubly linked list.  This is partly
+because I made the decision to implement the doubly linked list as a separate 
+object with a large number of functionalities to make it reusable.
+
+I also learned about string parsing, which required me to study and partially 
+understand the wonderful world of string pointers.
+
+Issues and how I fixed them:
+
+The implementation of the doubly linked list itself went rather smoothly, at
+least for the purposes of this lab.  I didn't error check the dllist.c code 
+very closely, so there may be many underlying bugs in the code.  But, should
+I ever need it, the bulk of the work is already done.  
+
+The implementation of bincalc.c, however, did not go as smoothly.  I apparently
+did not know how to implement strtok, and strncat, because instead of a string
+I passed a reference to a char to each function.  (i.e., &op where op was '+')
+This, unsurprisingly, led to a very sneaky bug which I just barely caught. My 
+quick fix for this was to simply turn op into a pointer to a string literal. I 
+had similar issues with strncat in which I passed in a string literal as a dest
+pointer, which of course led to a seg fault.  I fixed that issue by just
+declaring an empty char array, built the padded string in that array, then
+parsed the array.
+
+Improvements that can be made:
+
+In the future, I feel I should probably make my dllist code a little more 
+reusable by making it work for types other than characters.  I would also need
+to error check dllist, to make absolutely sure that all functions behave as 
+advertised.  I also felt a strong urge to make dllist operate with an info_t
+structure which holds the head and tail of a list, but the instructions clearly
+stated to use bit_t and cpu_t as they are.  Removed from the constraints of the
+lab specifications, I most likely would change dllist to use info_t structures.
